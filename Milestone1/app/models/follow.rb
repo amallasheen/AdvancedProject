@@ -3,6 +3,7 @@ class Follow < ActiveRecord::Base
   belongs_to :followee, class_name: 'User'
   validates_presence_of(:follower_id)
   validates_presence_of(:followee_id)
+  #validates_associated :follower, :followee
   validates_uniqueness_of :follower_id, :scope => [:followee_id]
   validate :different_user
 

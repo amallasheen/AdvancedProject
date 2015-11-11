@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20151110094423) do
     t.datetime "updated_at",            null: false
   end
 
+  add_index "follows", ["followee_id"], name: "followee_id", using: :btree
+  add_index "follows", ["follower_id"], name: "follower_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.integer  "desttype",   limit: 4
     t.integer  "user_id",    limit: 4
@@ -76,6 +79,8 @@ ActiveRecord::Schema.define(version: 20151110094423) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "follows", "users", column: "followee_id", name: "follows_ibfk_2"
+  add_foreign_key "follows", "users", column: "follower_id", name: "follows_ibfk_1"
   add_foreign_key "posts", "users"
   add_foreign_key "topics", "categories"
   add_foreign_key "users", "topics"
