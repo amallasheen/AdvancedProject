@@ -1,8 +1,8 @@
 class CreateFollows < ActiveRecord::Migration
   def change
     create_table :follows do |t|
-      t.references :user, index: true, foreign_key: true
-      t.references :user, index: true, foreign_key: true
+      t.references :follower
+      t.references :followee
 
       t.timestamps null: false
     end
