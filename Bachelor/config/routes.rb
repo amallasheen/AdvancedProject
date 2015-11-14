@@ -1,17 +1,8 @@
 Rails.application.routes.draw do
-  get 'comments/new'
-
-  get 'comments/create'
-
-  get 'comments/edit'
-
-  get 'comments/delete'
-
-  get 'comments/index'
-
-  get 'comments/show'
+ 
 
   resources :posts
+  resources :comments
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
