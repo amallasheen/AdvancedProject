@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   has_many :followees, class_name: 'Follow', :foreign_key => 'followee_id'
   validates :fname, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates :lname, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
-  validates :email, presence: true, uniqueness: true
   validates_inclusion_of :doctor, :in => [true, false]
+  validates :email, presence: true, uniqueness: true, format: {with: /\A\w+\-?\w*\.\w*\-?\w*@\w*\.?guc.edu.eg\z/,message: "insert GUC email"}
+  validate :dob_validation
+  def dob_validation 
+     if !dob.nil? && dob > Date.today
+     	errors.add(:dob, "can't be in the future")
+     end  
+   end 
 end
