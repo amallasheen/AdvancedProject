@@ -23,10 +23,10 @@ def create
 
     if @comment.save
       #redirect_to :back
-      redirect_to posts_path
+      redirect_to :back
      #render Rails.application.routes.recognize_path(request.referer)[:action]
     else
-      render :back
+      redirect_to :back
     end
   end
 

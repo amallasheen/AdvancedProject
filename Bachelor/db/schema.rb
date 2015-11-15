@@ -57,10 +57,9 @@ ActiveRecord::Schema.define(version: 20151112132455) do
     t.datetime "updated_at",                null: false
   end
 
-  add_index "topics", ["category_id"], name: "index_topics_on_category_id", using: :btree
-
+ 
   create_table "users", force: :cascade do |t|
-    t.boolean  "type"
+    t.boolean  "doctor"
     t.string   "email",      limit: 255
     t.string   "gucid",      limit: 255
     t.string   "fname",      limit: 255
@@ -83,3 +82,4 @@ ActiveRecord::Schema.define(version: 20151112132455) do
   add_foreign_key "topics", "categories"
   add_foreign_key "users", "topics"
 end
+ 

@@ -43,10 +43,19 @@ def show
 
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new
+    @post.content=params[:post][:content]
+    if(params[:user_type])
+      @post.desttype=1
+    else
+       @post.desttype=0
+     end
+
+
+    @post.destid=params[:destid]
     if @post.save
       flash[:success] = "Your post has been created successfully !"
-      redirect_to @post
+      redirect_to :back
     else
       render 'new'
     end
