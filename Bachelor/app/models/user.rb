@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   validates_inclusion_of :doctor, :in => [true, false]
   validate :dob_validation
   def dob_validation 
-     if (:dob > Date.Today)
-     	error.add(:dob, "can't be born in the future")
+     if !dob.nil? && dob > Date.today
+     	errors.add(:dob, "can't be in the future")
      end  
    end 
 end
