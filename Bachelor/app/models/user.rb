@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :fname, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates :lname, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates :email, presence: true, uniqueness: true, format: {with: /\A\w+\-?\w*\.\w*\-?\w*@\w*\.?guc.edu.eg\z/,message: "insert GUC email"}
-  validates_inclusion_of :type, :in => [true, false]
+  validates_inclusion_of :doctor, :in => [true, false]
   validate :dob_validation
   def dob_validation 
      if (:dob > Date.Today)
