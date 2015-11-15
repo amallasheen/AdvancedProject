@@ -1,1 +1,25 @@
 
+<div id="page_wrapper">
+	<b>Name: </b><%= @user.fname%> <%= @user.lname%>
+	<br>
+	<br>
+	<b>Email: </b><%= @user.email%>
+	<br>
+	<br>
+	<b>Date of birth: </b><%= @user.dob%>
+	<br>
+	<br>
+	<b>Location: </b><%= @user.location%>
+	<br>
+	<br>
+	<b>GUC ID: </b><%= @user.gucid%>
+	<br>
+	<br>
+	<b>Gender: </b><%if @user.gender == 1%> female <%else%> male <%end%>
+    <br>
+    <br>
+	<%if current_user.avatar != nil%>
+	<%= image_tag current_user.avatar.to_s%>
+	<%else%>
+	<%= image_tag "user.jpg"%>
+	<%end%>
