@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :topic
+  has_many    :posts
   #has_many :follows, class_name: "Follow", foreign_key: :follower_id
   #has_many :follows, class_name: "Follow", foreign_key: :followee_id
   has_many :followers, class_name: 'Follow', :foreign_key => 'follower_id'
