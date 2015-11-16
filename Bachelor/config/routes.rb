@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 
   get 'posts/delete'
 
+  get 'users/edit' => 'users#edit'
+  post 'users/edit' => 'users#update'
+  get 'users/:id' => 'users#show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

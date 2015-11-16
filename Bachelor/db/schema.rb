@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110094423) do
+ActiveRecord::Schema.define(version: 20151112132455) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -31,12 +31,14 @@ ActiveRecord::Schema.define(version: 20151110094423) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "follower_id", limit: 4
+    t.integer  "followee_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
+  add_index "follows", ["followee_id"], name: "followee_id", using: :btree
+  add_index "follows", ["follower_id"], name: "follower_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "desttype",   limit: 4
@@ -60,7 +62,7 @@ ActiveRecord::Schema.define(version: 20151110094423) do
   add_index "topics", ["category_id"], name: "index_topics_on_category_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.boolean  "type"
+    t.boolean  "doctor"
     t.string   "email",      limit: 255
     t.string   "gucid",      limit: 255
     t.string   "fname",      limit: 255
@@ -71,13 +73,15 @@ ActiveRecord::Schema.define(version: 20151110094423) do
     t.integer  "topic_id",   limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "avatar",     limit: 255
   end
 
   add_index "users", ["topic_id"], name: "index_users_on_topic_id", using: :btree
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "follows", "users"
+  add_foreign_key "follows", "users", column: "followee_id", name: "follows_ibfk_2"
+  add_foreign_key "follows", "users", column: "follower_id", name: "follows_ibfk_1"
   add_foreign_key "posts", "users"
   add_foreign_key "topics", "categories"
   add_foreign_key "users", "topics"
