@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 20151112132455) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
+   t.integer  "follower_id", limit: 4
+    t.integer  "followee_id", limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
-  add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
-
+  
   create_table "posts", force: :cascade do |t|
     t.integer  "desttype",   limit: 4
     t.integer  "user_id",    limit: 4
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20151112132455) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "follows", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "topics", "categories"
   add_foreign_key "users", "topics"
