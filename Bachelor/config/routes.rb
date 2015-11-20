@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
    resources :categories
-  resources :users do
-    member do 
-      get 'timeline'
-    end
-  end
+  resources :users 
+  #do
+   # member do 
+   #   get 'timeline'
+   # end
+  #end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

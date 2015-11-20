@@ -19,8 +19,8 @@ class UsersController < ApplicationController
 	def delete
 	end
 
-	def timeline
-		@user=User.find(1) #the person whose timeline is open
+	def show
+		@user=User.find(params[:id]) #the person whose timeline is open 
 		@posts=Post.where(:destid=>1,:desttype=>0)
 		@user2=User.find(2)  #should be got from the session 
 		@can=0
