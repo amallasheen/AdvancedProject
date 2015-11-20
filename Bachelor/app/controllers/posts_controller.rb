@@ -45,14 +45,9 @@ def show
   def create
     @post = Post.new
     @post.content=params[:post][:content]
-    if(params[:user_type])
-      @post.desttype=1
-    else
-       @post.desttype=0
-     end
-
-
+    @post.desttype=params[:desttype]
     @post.destid=params[:destid]
+    @post.user_id=2 ##should be taken from the session
     if @post.save
       flash[:success] = "Your post has been created successfully !"
       redirect_to :back

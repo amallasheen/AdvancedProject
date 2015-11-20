@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
 	def timeline
 		@user=User.find(1) #the person whose timeline is open
-		@posts=Post.where(:destid=>@user.id,:desttype=>@user.doctor)
+		@posts=Post.where(:destid=>1,:desttype=>0)
 		@user2=User.find(2)  #should be got from the session 
 		@can=0
 		@isfollow=Follow.where(follower_id:@user2.id , followee_id:@user.id)
