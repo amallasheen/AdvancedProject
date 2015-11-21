@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+#facebook-div{
+	margin: 0 70%;
+	width: 300px;
+	height: 0px;
+}
