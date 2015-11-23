@@ -38,7 +38,13 @@
      <p>
 		<%= f.label :gender%>
 		<br>
-		<%= f.text_field :gender, :value => self.current_user.gender%>
+		<% if self.current_user.gender == true 
+                 @gender = "Female"
+              else 
+                  @gender = "Male" 
+             end          
+			%>
+		<%= f.text_field :gender, :value => @gender%>
 	</p>
 
 	<p>

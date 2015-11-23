@@ -15,11 +15,11 @@
 	<b>GUC ID: </b><%= @user.gucid%>
 	<br>
 	<br>
-	<b>Gender: </b><%if @user.gender == 1%> female <%else%> male <%end%>
+	<b>Gender: </b><%if @user.gender == true%> Female <%else%> Male <%end%>
     <br>
     <br>
 	<%if current_user.avatar != nil%>
 	<%= image_tag current_user.avatar.to_s%>
 	<%else%>
-	<%= image_tag "user.jpg"%>
+	<%= image_tag "/app/assets/images/user.jpg"%>
 	<%end%>
