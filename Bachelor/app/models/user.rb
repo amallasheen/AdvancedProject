@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   belongs_to :topic
   has_many    :posts
   #has_many :follows, class_name: "Follow", foreign_key: :follower_id
@@ -16,3 +17,4 @@ class User < ActiveRecord::Base
      end  
    end 
 end
+ 
