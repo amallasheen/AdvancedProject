@@ -63,17 +63,21 @@ ActiveRecord::Schema.define(version: 20151112132455) do
 
   create_table "users", force: :cascade do |t|
     t.boolean  "doctor"
-    t.string   "email",      limit: 255
-    t.string   "gucid",      limit: 255
-    t.string   "fname",      limit: 255
-    t.string   "lname",      limit: 255
+    t.string   "email",            limit: 255
+    t.string   "gucid",            limit: 255
+    t.string   "fname",            limit: 255
+    t.string   "lname",            limit: 255
     t.date     "dob"
     t.boolean  "gender"
-    t.string   "location",   limit: 255
-    t.integer  "topic_id",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "avatar",     limit: 255
+    t.string   "location",         limit: 255
+    t.string   "provider",         limit: 255
+    t.string   "uid",              limit: 255
+    t.string   "oauth_token",      limit: 255
+    t.datetime "oauth_expires_at"
+    t.integer  "topic_id",         limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "avatar",           limit: 255
   end
 
   add_index "users", ["topic_id"], name: "index_users_on_topic_id", using: :btree
