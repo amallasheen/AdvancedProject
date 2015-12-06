@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :posts
+  resources :comments
+   resources :categories
+  resources :users 
+  #do
+   # member do 
+   #   get 'timeline'
+   # end
+  #end
+
   get 'sessions/create'
 
   get 'sessions/destroy'

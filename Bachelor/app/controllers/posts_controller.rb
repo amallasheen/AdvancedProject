@@ -1,4 +1,17 @@
 class PostsController < ApplicationController
+  def index
+    @posts=Post.all
+  end
+
+  
+  def edit
+    @post=Post.find(params[:id])
+  end
+
+  def destroy
+     @post=Post.find(params[:id])
+     @post.destroy
+     redirect_to posts_path
   def new
 @post=Post.new
   end
@@ -21,15 +34,53 @@ class PostsController < ApplicationController
   @posts= Post.all.where(:desttype => 1)
   end
 
-  def show
+  def update
+  @post = Post.find(params[:id])
+ 
+    if @post.update_attributes(post_params)
+      flash[:success] = "Your post has been updated successfully !"
+      redirect_to @post
+    else
+      render 'edit'
+     
+    end
+ 
+end
+
+
+def show
+    @post = Post.find(params[:id])
   end
 
-  def edit
+
+
+  def new
+    @post = Post.new
   end
 
-  def delete
+
+
+  def create
+    @post = Post.new
+    @post.content=params[:post][:content]
+    @post.desttype=params[:desttype]
+    @post.destid=params[:destid]
+    @post.user_id=current_user.id ##should be taken from the session
+    if @post.save
+      flash[:success] = "Your post has been created successfully !"
+      redirect_to :back
+    else
+      render 'new'
+    end
   end
 
+
+
+  private
+    def post_params
+      params.require(:post).permit(:content, :desttype,
+                                   :dest_id,:user_id)
+    end
 def post_params
     post_params = params.require(:post).permit(:desttype, :destid, :content, user_attributes: [:id])
     post_params
@@ -37,5 +88,5 @@ def post_params
 def follow_params
   follow_params = params.require(:follows).permit(:follower_id, :followee_id)
   follow_params
-end
+endP
 end
