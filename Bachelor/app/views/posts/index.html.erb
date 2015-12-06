@@ -1,2 +1,32 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<!DOCTYPE html>
+<style>
+head{
+	color: maroon;
+	font-size: 20px;
+}
+body {
+    background-color: linen;
+}
+
+div {
+	color: blue;
+}
+</style>
+<head>
+	<center><b> TimeLine </b> </center>
+	</head>
+<body>
+<% @follows.each do |follow| %>
+<% @posts.each do |post| %>
+<%if follow.follower_id == post.destid %>
+<div> 
+	<b> Post Sent To: </b> <%= User.find(follow.follower_id).fname %>
+	<br>
+<%= post.content %>
+</div>
+</br>
+<%end%>
+<%end%>
+ <%end %>
+</body>
+</html>
