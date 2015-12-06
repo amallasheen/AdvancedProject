@@ -47,7 +47,7 @@ def show
     @post.content=params[:post][:content]
     @post.desttype=params[:desttype]
     @post.destid=params[:destid]
-    @post.user_id=2 ##should be taken from the session
+    @post.user_id=current_user.id ##should be taken from the session
     if @post.save
       flash[:success] = "Your post has been created successfully !"
       redirect_to :back

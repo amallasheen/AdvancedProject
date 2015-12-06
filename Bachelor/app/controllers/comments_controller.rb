@@ -34,7 +34,7 @@ def create
 
   private
     def comment_params
-      params.require(:comment).permit(:content,:post_id)#have to add user_id after the session
+      params.require(:comment).permit(:content,:post_id,current_user.id)#have to add user_id after the session
     end
 end
 
