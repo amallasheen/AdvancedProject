@@ -69,8 +69,19 @@
 	<b>Gender: </b><%if @user.gender == true%> Female <%else%> Male <%end%>
     <br>
     <br>
-	<%if current_user.avatar != nil%>
-	<%= image_tag current_user.avatar.to_s%>
+	<li>
+	<%if @user.avatar_url != nil%>
+	  <%= link_to(@user.avatar_url.to_s) do %>
+	    <%= image_tag @user.avatar_url.to_s,size:"100x100" %>
+	  <% end %>
 	<%else%>
+<<<<<<< HEAD
 	<%= image_tag "/app/assets/images/user.jpg"%>
 	<%end%>
+<<<<<<< HEAD
+=======
+=======
+	  <%= image_tag "user.png", size: "100x100"%>
+	<%end%></li>
+>>>>>>> origin/weambranch
+>>>>>>> a022d873bc6543276cfa4b77a58a2928d137a38d
