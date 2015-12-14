@@ -2,7 +2,14 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
    resources :categories
-  resources :users 
+  resources :users do 
+    member do
+     get 'timeline'
+     get 'show_followers'
+     get 'show_followees'
+     post   'follow'
+   end 
+  end 
   #do
    # member do 
    #   get 'timeline'
@@ -54,7 +61,33 @@ Rails.application.routes.draw do
   get 'users/edit' => 'users#edit'
   post 'users/edit' => 'users#update'
   get 'users/:id' => 'users#show'
-  get 'posts/:user_id' => 'posts#index'
+  namespace :api, defaults: { format: :json } do
+   #post '/posts/create' => 'posts#create'
+    resources :posts 
+   # get '/posts' => 'posts#index'
+   # get '/posts/:id' => 'posts#show'
+    
+   resources :comments
+   post 'follows/exists' => 'follows#exists'
+   post 'follows/unfollow' => 'follows#unfollow'
+   resources :follows
+   get '/users/followers/:id' => 'users#followers'
+   get '/users/followees/:id' => 'users#followees'
+   get '/users/timeline/:id' => 'users#timeline'
+   resources :users
+   
+   # do 
+   #  member do
+   #   get 'timeline'
+   # end 
+  # end 
+  
+   post 'users/exists' => 'users#exists'
+   get '/categories/posts/:id' => 'categories#posts'
+   resources :categories
+  
+  end
+  #get 'posts/:user_id' => 'posts#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

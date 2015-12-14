@@ -1,23 +1,10 @@
-<div>
-<h2>Category Name </h2>
-<%=@category.name%>
-</div>
-<div>
-  <%@category.topics.each do |topic|%>
-<h2>Topic Name </h2><%= topic.name%><br>
-<h2>Topic description </h2><%= topic.description%><br>
-
-  <%end%>
-</div><br>
-<h2>Posts </h2>
-<div>
 <div  class="container" style="margin-left:20px" >
+<h1>TimeLine</h1>
+
 <% @post = Post.new %>
-  <%= form_for @post , :url => posts_path(destid: @category.id,desttype:2)  do |ff| %>
+  <%= form_for @post , :url => posts_path(destid: current_user.id,desttype:1)  do |ff| %>
   <div class="field">
     <%= ff.label :Post %><br />
-    
-
     <%= ff.text_field :content, :style=>"height:100px; width:300px" %>
   </div>
   <br>
@@ -35,11 +22,12 @@
 <ul  class="list-group-item list-group-item-success" >
  <div>
   <li> <%= post.content %><br>
+
    </li>
   </div>
   </ul>
   <br>
-  
+
 <h4>Comments</h4><br>
 <%post.comments.each do |comment|%>
  <ul class="list-group-item list-group-item-warning" >
@@ -66,7 +54,3 @@
 <% end %>
 </div>
  </div>
-
- 
-<br />
-</div>

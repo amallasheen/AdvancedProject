@@ -9,8 +9,9 @@ class CreateUsers < ActiveRecord::Migration
       t.date :dob
       t.boolean :gender
       t.string :location
-      t.string :provider
       t.string :uid
+      t.string :avatar
+      t.string :provider
       t.string :oauth_token
       t.datetime :oauth_expires_at
       t.references :topic, index: true, foreign_key: true

@@ -1,0 +1,8 @@
+<ul class="list-group">
+<% @categories.each do |follow| %>
+<li  class="list-group-item list-group-item-success" >
+<%= link_to  follow.name, category_path(follow.id)%>
+</li>
+  <%end%>
+  </ul>
+

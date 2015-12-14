@@ -1,87 +1,69 @@
 
-<%if @can==1%>
-<% @post = Post.new %>
-  <%= form_for @post , :url => posts_path(destid: @user.id,desttype:0)  do |ff| %>
-  <div class="field">
-    <%= ff.label :content %><br />
-    <%= ff.text_field :content %>
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= @user.fname%> <%= @user.lname%></h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center">
+                 <%=image_tag "user.png", size: "100x100"%> 
+                 </div>
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Email:</td>
+                        <td><%= @user.email%></td>
+                      </tr>
+                      <tr>
+                        <td>GUC ID:</td>
+                        <td><%= @user.gucid%></td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth:</td>
+                        <td><%= @user.dob%></td>
+                      </tr>
+                   
+                         <tr>
+                             <tr>
+                        <td>Gender:</td>
+                        <td><%if @user.gender == true%> Female <%else%> Male <%end%></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                    <%if @can==1%>
+                   <% @post = Post.new %>
+           <%= form_for @post , :url => posts_path(destid: @user.id,desttype:1)  do |ff| %>
+            <div class="field">
+    <%= ff.label :Post %><br />
+    <%= ff.text_field :content, :style=>"height:100px; width:300px" %>
   </div>
-  <div class="actions">
-    <%= ff.submit %>
-  </div>
-
-<%end%>
-<br>
-<%end%>
-<table>
-  <tr>
-    <th>Content</th>
-    <th>Created at</th>
-    
-  </tr>
-
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.content %></td>
-    <td><%= post.created_at %></td>
-  </tr>
-  <tr><%post.comments.each do |comment|%>
-  <td><%=comment.content%></td>
-  </tr>
-  <%end%>
-  <%if @can==1%>
-    <% @comment = Comment.new %>
-      <%= form_for @comment , :url => comments_path(post_id: post.id)  do |f| %>
-      <div class="field">
-      <%= f.hidden_field :post_id, :value => @post.id %>
-        <%= f.label :comment %><br />
-        <%= f.text_field :content %>
+  <br>
+  <div>
+        <%= ff.submit 'Post', :class=>"btn btn-success" %>
       </div>
-      <div class="actions">
-        <%= f.submit %>
+             <br>
+             <div class = "btn btn-success">
+         <%= link_to "followers" ,show_followers_user_path(user_id:@user.id) %>
+            </div>
+          <div class = "btn btn-success" style = "margin-left: 50px;">
+        <%= link_to  "followees",show_followees_user_path(user_id:@user.id) %>
+        </div>
+       <%end%>
+     <br>
+    <%else%>
+      <%= button_to "Follow", {:controller => :users, :action => :follow , :user_id => @user.id}, :class=> "btn btn-success" %>
+    <%end%>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
       </div>
-
-  <%end%>
-<%end%>
-<% end %>
-</table>
- 
-<br />
-
- 
-<%= link_to 'New post', new_post_path %>
-<div id="page_wrapper">
-	<b>Name: </b><%= @user.fname%> <%= @user.lname%>
-	<br>
-	<br>
-	<b>Email: </b><%= @user.email%>
-	<br>
-	<br>
-	<b>Date of birth: </b><%= @user.dob%>
-	<br>
-	<br>
-	<b>Location: </b><%= @user.location%>
-	<br>
-	<br>
-	<b>GUC ID: </b><%= @user.gucid%>
-	<br>
-	<br>
-	<b>Gender: </b><%if @user.gender == true%> Female <%else%> Male <%end%>
-    <br>
-    <br>
-	<li>
-	<%if @user.avatar_url != nil%>
-	  <%= link_to(@user.avatar_url.to_s) do %>
-	    <%= image_tag @user.avatar_url.to_s,size:"100x100" %>
-	  <% end %>
-	<%else%>
-<<<<<<< HEAD
-	<%= image_tag "/app/assets/images/user.jpg"%>
-	<%end%>
-<<<<<<< HEAD
-=======
-=======
-	  <%= image_tag "user.png", size: "100x100"%>
-	<%end%></li>
->>>>>>> origin/weambranch
->>>>>>> a022d873bc6543276cfa4b77a58a2928d137a38d
+    </div>

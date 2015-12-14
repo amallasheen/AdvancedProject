@@ -32,15 +32,16 @@ end
 
 def show
     @category = Category.find(params[:id])
-    @user=User.find(2) ##should be taken from sessions
-    if(@user.topic_id!=nil) 
-    @topic=Topic.find(@user.topic_id)
-    @can=0
-    if(@topic.category_id== @category.id)
-      @can=1
-    end 
-  end 
-    @posts=Post.where(desttype:1,destid:@category.id)
+    @posts=Post.where(desttype:2,destid:@category.id)
+  #   @user=User.find(2) ##should be taken from sessions
+  #   if(@user.topic_id!=nil) 
+  #   @topic=Topic.find(@user.topic_id)
+  #   @can=0
+  #   if(@topic.category_id== @category.id)
+  #     @can=1
+  #   end 
+  # end 
+  #   @posts=Post.where(desttype:1,destid:@category.id)
   end
 
 

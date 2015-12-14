@@ -12,6 +12,7 @@ class PostsController < ApplicationController
      @post=Post.find(params[:id])
      @post.destroy
      redirect_to posts_path
+   end
   def new
 @post=Post.new
   end
@@ -82,11 +83,8 @@ def show
                                    :dest_id,:user_id)
     end
 def post_params
-    post_params = params.require(:post).permit(:desttype, :destid, :content, user_attributes: [:id])
+    post_params = params.require(:post).permit(:desttype, :destid, :content,:title, user_attributes: [:id])
     post_params
   end
-def follow_params
-  follow_params = params.require(:follows).permit(:follower_id, :followee_id)
-  follow_params
-endP
+
 end
