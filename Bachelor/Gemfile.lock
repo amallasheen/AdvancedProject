@@ -114,6 +114,8 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    rabl (0.11.6)
+      activesupport (>= 2.3.14)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -197,6 +199,7 @@ DEPENDENCIES
   mini_magick
   mysql
   omniauth-facebook
+  rabl
   rails (= 4.2.3)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
